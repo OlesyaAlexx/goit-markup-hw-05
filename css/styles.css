@@ -577,7 +577,8 @@ input::placeholder {
     width: 100%;
     height: 100%;
     background-color:  rgba(46, 47, 66, 0.40);
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
    
 }
@@ -591,7 +592,7 @@ input::placeholder {
 
 .modal {
     position: absolute;
-    min-width: 408px;
+    width: 408px;
     min-height: 584px;
     border-radius: 4px;
     background-color: #FCFCFC;
@@ -604,30 +605,34 @@ input::placeholder {
     transition: transform 250ms cubic-bezier(0.4,0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    padding-top: 24px;
+    padding-top: 72px;
     padding-bottom: 24px;
     padding-right: 24px;
     padding-left: 24pt;
 }
 .modal_close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #E7E9FC;
     width: 24px;
     height: 24px;
-    border-radius: 50px;
-    margin-bottom: 24px;
+    border-radius: 50%;
     cursor: pointer;
+    padding: 0;
     margin-left: auto;
     border: 1px solid rgba(0, 0, 0, 0.10);
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
        
 }
 .modal_close:hover,
 .modal_close:focus {
     background-color: #404BBF;
+    border: none;
 }
 
 .modal_icon_close {
@@ -636,49 +641,47 @@ input::placeholder {
     
 }
 
-.modal_icon_close:hover,
-.modal_icon_close:focus,
-.modal_icon_close:active {
-    fill: #F4F4FD;
+.modal_close:hover .modal_icon_close,
+.modal_close:focus .modal_icon_close {
+    fill: #FFFFFF;
 }
 .modal_text {
     color: #2E2F42;
     text-align: center;  
-    font-family: Roboto;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5; 
     letter-spacing: 0.02em;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 .form_container {
-    display: flex;
-    flex-direction: column;
-    min-width: 360px;
-    align-items: flex-start;
-    gap: 8px;
-    margin-left: 3px;
+   
+    
+    margin-bottom: 8px;
 }
 .form_label {
     color: #8E8F99;
-    font-family: Roboto;
     font-size: 12px;
     font-weight: 400;
     line-height: 1.17; 
     letter-spacing: 0.04em;
+    margin-bottom: 4px;
 }
 .input_container {
     position: relative;
     display: flex;
-    min-width: 360px;
     color: transparent;
         
 }
 .form_input {
-    width: 360px;
-    padding: 11px 16px 11px 36px;
+    width: 100%;
+    height: 40px;
+    padding-left: 38px;
     border-radius: 4px;  
     border: 1px solid rgba(46, 47, 66, 0.40);
+    background-color: transparent;
+    outline: transparent;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     
 }
 
@@ -692,10 +695,15 @@ input::placeholder {
 .modal_icon {
     position: absolute;
     fill: #2E2F42;
-    top: 8px;
+    top: 50%;
     left: 16px;
+    transform: translateY(-50%);
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     
+}
+
+.form_comments_container {
+    margin-bottom: 16px;
 }
 
 .form_label_comments {
@@ -704,41 +712,39 @@ input::placeholder {
     justify-content: flex-start;
     margin-bottom: 4px;
     color: #8E8F99;
-    font-family: Roboto;
     font-size: 12px;
-    font-weight: 400;
     line-height: 1.17;
     letter-spacing: 0.04em;
 }
 
 .textarea_comments {
-    min-width: 360px;
+    width: 100%;
+    height: 120px;
     border-radius: 4px;
     border: 1px solid rgba(46, 47, 66, 0.40);
     padding: 8px 16px;
-    margin-bottom: 24px;
-    margin-top: 4px;
     resize: none;
+    outline: transparent;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: rgba(46, 47, 66, 0.40);
+    background-color: transparent;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .textarea_comments:focus {
     border-color: #4D5AE5;
 }
 textarea::placeholder {
-    color: rgba(46, 47, 66, 0.40);
-    font-family: Roboto;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.17;
-    letter-spacing: 0.04em;
+      
 }
 
 .checkbox_container {
-
+    margin-bottom: 24px;
 }
 
 .label_checkbox {
     color: #8E8F99;      
-    font-family: Roboto;
     font-size: 12px;  
     font-weight: 400;
     line-height: 1.17;
@@ -746,7 +752,7 @@ textarea::placeholder {
 }
 
 .span_checkbox {
-    display: inline-block;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     fill: transparent;
@@ -764,7 +770,6 @@ textarea::placeholder {
 
 .hidden_checkbox:checked + .label_checkbox .span_checkbox {
     background-color: #4D5AE5;
-    border: none;
     fill: #F4F4FD;
 }
 
@@ -787,26 +792,25 @@ textarea::placeholder {
 }
 
 .submit_btn {
-    display: flex;
+    display: block;
     padding: 16px 32px;
-    justify-content: center;
-    align-items: flex-start;
-    width: 169px;
+    min-width: 169px;
+    height: 56px;
     border: none;
     border-radius: 4px;
     background-color: #4D5AE5;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
     color: #FFFFFF;
     text-align: center;
-    font-family: Roboto;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
-     font-weight: 500;
+    font-weight: 500;
     line-height: 1.5;
     letter-spacing: 0.04em;
-    margin-top: 24px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .submit_btn:focus,
 .submit_btn:hover {
